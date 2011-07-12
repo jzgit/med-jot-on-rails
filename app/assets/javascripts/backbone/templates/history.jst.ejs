@@ -1,0 +1,13 @@
+
+<div> working</div>
+
+<div><%= sections %></div>
+<% _(sections).each( function(v,k,list) { 
+  var smallv = v.toLowerCase(); %>
+  <div class="section-title ">
+    <h3><%= k %><span class="tag "><%= v %></span></h3>
+    <ul class="jot-list <%= smallv %>"><li></li></ul>
+  </div>
+<%  });%>
+
+

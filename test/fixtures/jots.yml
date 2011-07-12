@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  content: MyString
+  location: MyString
+  context: MyString
+  order: 1
+
+two:
+  content: MyString
+  location: MyString
+  context: MyString
+  order: 1
