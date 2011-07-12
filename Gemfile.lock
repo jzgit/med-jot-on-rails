@@ -39,6 +39,11 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.1.1)
+    eco (1.0.0)
+      coffee-script
+      eco-source
+      execjs
+    eco-source (1.1.0.rc.1)
     ejs (1.0.0)
     erubis (2.7.0)
     execjs (1.2.0)
@@ -112,6 +117,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-script
+  eco (~> 1.0.0)
   ejs (~> 1.0.0)
   jquery-rails
   rails (= 3.1.0.rc4)

@@ -16,6 +16,7 @@ gem 'jquery-rails'
 gem 'rails-backbone'
 
 gem "ejs", "~> 1.0.0"
+gem 'eco', '~> 1.0.0'
 # Use unicorn as the web server
 # gem 'unicorn'
 

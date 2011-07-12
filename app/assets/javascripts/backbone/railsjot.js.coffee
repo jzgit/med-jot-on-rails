@@ -91,28 +91,28 @@ jQuery ->
     tagName:      'div'
     template: JST["backbone/templates/history"]
 
-    sectionsList =
-      sections:
-        'Patient Info': 'PT'
-        'Chief Complaint': 'CC'
-        'History of Present Illness': 'HPI'
-        'Past Medical History': 'PMH'
-        'Past Surgical History': 'PSH'
-        'Medications': 'MEDS'
-        'Allergies': 'ALL'
-        'Social History': 'SH'
-        'Family History': 'FH'
-        'Review of Systems': 'ROS'
+    sections:
+      'Patient Info': 'PT'
+      'Chief Complaint': 'CC'
+      'History of Present Illness': 'HPI'
+      'Past Medical History': 'PMH'
+      'Past Surgical History': 'PSH'
+      'Medications': 'MEDS'
+      'Allergies': 'ALL'
+      'Social History': 'SH'
+      'Family History': 'FH'
+      'Review of Systems': 'ROS'
 
 
     initialize: ->
       _.bindAll(this, 'render')
+      #alert(sectionsList)
       @render()
 
 
     render: ->
       #$(@el).html('<h1>history</h1>')
-      $(@el).html(@template(sections: @sectionList))
+      $(@el).html(@template({@sections}))
       @
 
 
