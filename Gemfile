@@ -17,6 +17,9 @@ gem 'rails-backbone'
 
 gem "ejs", "~> 1.0.0"
 gem 'eco', '~> 1.0.0'
+
+gem 'jasminerice'
+gem 'haml'
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -30,3 +33,5 @@ group :test do
   # Pretty printed test output
   gem 'turn', :require => false
 end
+
+
