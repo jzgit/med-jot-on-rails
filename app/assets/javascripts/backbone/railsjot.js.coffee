@@ -4,7 +4,9 @@
 #= require_tree ./views
 #= require_tree ./routers
 
-window.Railsjot =
+root = global ? window
+
+root.Railsjot =
   Models: {}
   Collections: {}
   Routers: {}
@@ -19,74 +21,46 @@ window.Railsjot =
 
 # Load the application once the DOM is ready, using `jQuery.ready`:
 
-# Todo Model
+# Jot Model
 # ----------
 jQuery ->
-  # Our basic **Todo** model has `content`, `order`, and `done` attributes.
-  class window.Todo extends Backbone.Model
+  # Our basic **Jot** model has `content`, `order`, and `done` attributes.
+  class root.Jot extends Backbone.Model
 
-    # Default attributes for the todo.
-    defaults: 
-      content: "empty todo..."
-      location: "JOT"
-      context: ""
-      order: 0
+    #urlRoot: '/jots'
 
-    
-
-    # Ensure that each todo created has `content`.
-    initialize: ->
-      unless @get 'content'
-        @set "content": @defaults.content
-
-
-
-    
-
-    # Remove this Todo from *localStorage* and delete its view.
+    # Remove this Jot from *localStorage* and delete its view.
     clear: -> 
       @destroy()
       @view.remove()
 
-
-
-  # Todo Collection
+  # Jot Collection
   # ---------------
 
-  # The collection of todos is backed by *localStorage* instead of a remote
+  # The collection of jots is backed by *localStorage* instead of a remote
   # server.
-  class window.TodoList extends Backbone.Collection
+  class root.JotList extends Backbone.Collection
 
     # Reference to this collection's model.
-    model: window.Todo
+    model: root.Jot
 
-    # Save all of the todo items under the `"todos"` namespace.
-    #localStorage: new Store "todos"
-    #
     url: '/jots'
 
-
-
-
-    # We keep the Todos in sequential order, despite being saved by unordered
+    # We keep the Jots in sequential order, despite being saved by unordered
     # GUID in the database. This generates the next order number for new items.
     nextOrder: ->
       if (@length) then @last().get('order') + 1 else 1
-    
 
-    # Todos are sorted by their original insertion order.
-    comparator: (todo) ->
-      todo.get('order')
-    
+    # Jots are sorted by their original insertion order.
+    comparator: (jot) ->
+      jot.get('order')
 
 
-
-  # Create our global collection of **Todos**.
-  window.Todos = new TodoList()
-
+  # Create our global collection of **Jots**.
+  root.Jots = new JotList()
 
   # history view (right panel of classified info)
-  class window.HistoryView extends Backbone.View
+  class root.HistoryView extends Backbone.View
     el:           ($ '.history-content')
     tagName:      'div'
     template: JST["backbone/templates/history"]
@@ -106,161 +80,145 @@ jQuery ->
 
     initialize: ->
       _.bindAll(this, 'render')
-      #alert(sectionsList)
-      @render()
-
-
-    render: ->
-      #$(@el).html('<h1>history</h1>')
       $(@el).html(@template({@sections}))
       @
 
 
-  window.History = new HistoryView()
+  root.History = new HistoryView()
 
   # Review of systems View
 
-  class window.RosView extends Backbone.View
+  class root.ROSView extends Backbone.View
 
     el:  ($ '.ros-container')
-    tagName:  "div"
-    template: JST["backbone/template/ros-section"]
+    tagName:  'div'
+    template: JST["backbone/templates/ros-section"]
 
     initialize: ->
       _.bindAll(this, 'render')
-    @
-
-    render: ->
-      $(@el).html(@template()(sections: {'blah': 'BL'}))
+      $(@el).html @template
       @
 
-  window.Ros = new RosView()
+
+  root.Ros = new ROSView()
 
 
-  # Todo Item View
+  # Jot Item View
   # --------------
 
-  # The DOM element for a todo item...
-  class window.TodoView extends Backbone.View
+  # The DOM element for a jot item...
+  class root.JotView extends Backbone.View
 
     #... is a list tag.
     tagName:  "li"
 
     # Cache the template function for a single item.
-    #template: _.template($('#item-template').html())
-    #template: _.template(JST["backbone/templates/jot"])
     template: JST["backbone/templates/jot"]
 
     # The DOM events specific to an item.
-    events: 
-      "dblclick div.todo-content" : "edit"
-      "click span.todo-destroy"   : "clear"
-      "keypress .todo-input"      : "updateOnEnter"
-    
+    events:
+      "dblclick div.jot-content" : "edit"
+      "click span.jot-destroy"   : "clear"
+      "keypress .jot-input"      : "updateOnEnter"
+      "click .jot-move"          : "setLocation"
 
-    # The TodoView listens for changes to its model, re-rendering. Since there's
-    # a one-to-one correspondence between a **Todo** and a **TodoView** in this
+    # The JotView listens for changes to its model, re-rendering. Since there's
+    # a one-to-one correspondence between a **Jot** and a **JotView** in this
     # app, we set a direct reference on the model for convenience.
     initialize: -> 
-      _.bindAll(this, 'render', 'close')
-      @model.bind('change', @render)
-      @model.view = this
-    
+      _.bindAll this, 'render', 'close'
+      @model.bind 'change', @render
+      @model.bind 'destroy', => @remove()
 
-    # Re-render the contents of the todo item.
+    # Re-render the contents of the jot item.
     render: -> 
       $(@el).html(@template(@model.toJSON()))
       @setContent()
       this
-    
+
 
     # To avoid XSS (not that it would be harmful in this particular app),
-    # we use `jQuery.text` to set the contents of the todo item.
+    # we use `jQuery.text` to set the contents of the jot item.
     setContent: -> 
       content = @model.get 'content'
-      @$('.todo-content').text content
-      @input = @$('.todo-input')
+      @$('.jot-content').text content
+      @input = @$('.jot-input')
       @input.bind('blur', @close)
       @input.val content
-    
 
-    
+
+    setLocation: (e) ->
+      @model.set location: $(e.target).text()
+      @remove()
+      @model.save()
+
 
     # Switch this view into `"editing"` mode, displaying the input field.
-    edit: -> 
+    edit: ->
       $(@el).addClass "editing"
       @input.focus()
-    
 
-    # Close the `"editing"` mode, saving changes to the todo.
-    close: -> 
+
+    # Close the `"editing"` mode, saving changes to the jot.
+    close: ->
       @model.save content: @input.val()
       $(@el).removeClass "editing"
-    
+
 
     # If you hit `enter`, we're through editing the item.
     updateOnEnter: (e) ->
       @close() if e.keyCode is 13
-    
 
-    # Remove this view from the DOM.
-    remove: -> 
-      $(@el).remove()
-    
 
     # Remove the item, destroy the model.
-    clear: -> 
-      @model.clear()
-   
-
-
+    clear: ->
+      @model.destroy()
 
   # The Application
   # ---------------
 
   # Our overall **AppView** is the top-level piece of UI.
-  class window.AppView extends Backbone.View
+  class root.AppView extends Backbone.View
 
     # Instead of generating a new element, bind to the existing skeleton of
     # the App already present in the HTML.
     el: $("#center-app")
 
     # Our template for the line of statistics at the bottom of the app.
-    #statsTemplate: _.template $('#stats-template').html()
-    #statsTemplate: _.template(JST["backbone/templates/stats"])
     destinationTemplate: JST["backbone/templates/destination"]
 
     # Delegated events for creating new items, and clearing completed ones.
     events: 
-      "keypress #new-todo":  "createOnEnter"
-      "click .tag"        :  "setAutoTag"
+      "keypress #new-jot" : "createOnEnter"
+      "keyup #new-jot"    : "checkText"
+      "click span#help"    : "showHelp"
+      "click .tag"         : "setAutoTag"
 
-    
-
-    # At initialization we bind to the relevant events on the `Todos`
+    # At initialization we bind to the relevant events on the `Jots`
     # collection, when items are added or changed. Kick things off by
-    # loading any preexisting todos that might be saved in *localStorage*.
+    # loading any preexisting jots that might be saved in *localStorage*.
     initialize: -> 
-      _.bindAll(this, 'addOne', 'addAll', 'render', 'setAutoTag', 'move')
-      
-      @input    = @$("#new-todo")
+      _.bindAll(this, 'addOne', 'addAll', 'render', 'setAutoTag', 'showHelp', 'checkText', 'showROS',  'jotROS', 'checkFlags', 'cycleROS', 'markROS')
+
+      @input    = @$("#new-jot")
 
       @currentDestination = "JOT"
+      @currentROS = 0
 
-      window.Todos.bind('add',     @addOne)
-      window.Todos.bind('reset',   @addAll)
-      window.Todos.bind('all',     @render)
+      Jots.bind 'add', @addOne
+      Jots.bind 'reset', @addAll
+      Jots.bind 'change:location', @addOne
+      Jots.bind 'all', @render
 
-      window.Todos.fetch()
-    
+      Jots.fetch()
 
-    # Re-rendering the App just means refreshing the statistics -- the rest
+    # Re-rendering the App just means refreshing the autotag display -- the rest
     # of the app doesn't change.
     render: -> 
       current = @currentDestination.toLowerCase()
       @$('#current-destination').html(@destinationTemplate())
       @$('.auto-tag').children().removeClass('current-tag').filter('.' + current).addClass('current-tag')
-      #@toggleDetails current
+      @toggleDetails current
 
     setAutoTag: (e) ->
       @input.focus()
@@ -268,49 +226,140 @@ jQuery ->
       @render()
 
 
-    move: (todo) ->
-      todo.view.remove()
-      view = new window.TodoView model: todo
-      location = todo.get('location').toLowerCase()
+
+    # Add a single jot item to the list by creating a view for it, and
+    # appending its element to the `<ul>`.
+    addOne: (jot) ->
+      view = new JotView model: jot
+      location = jot.get('location').toLowerCase()
       $(".jot-list").filter('.'+location).append(view.render().el)
 
 
-    # Add a single todo item to the list by creating a view for it, and
-    # appending its element to the `<ul>`.
-    addOne: (todo) -> 
-      view = new window.TodoView model: todo
-      #if todo.get 'content' > 0
-      #location = todo.get('location').toLowerCase()
-      @$(".jot-list").append view.render().el
-    
-
-    # Add all items in the **Todos** collection at once.
+    # Add all items in the **Jots** collection at once.
     addAll: ->
-      window.Todos.each @addOne
-    
+      Jots.each @addOne
 
-    # Generate the attributes for a new Todo item.
+
+    # Generate the attributes for a new Jot item.
     newAttributes: ->
       content: @input.val()
-      order:   Todos.nextOrder()
-      location: 'none'
-   
-    
+      order:   Jots.nextOrder()
 
-    # If you hit return in the main input field, create new **Todo** model,
+    # If you hit return in the main input field, create new **Jot** model,
     # persisting it to *localStorage*.
     createOnEnter: (e) ->
       if e.keyCode is 13
         attrs = @newAttributes()
-        attrs.content = @input.val()
+        # checks for ROS symptom flags before assigning content
+        attrs.content = @jotROS @input.val()
         attrs.location = @currentDestination
 
-        Todos.create attrs
+        Jots.create attrs
         @input.val('')
 
+    #reshow help menu
+    showHelp: ->
+      $("#guider_overlay").fadeIn("fast")
+      $('.guider').fadeIn("fast")
+
+    # check for flags in input (.hpi, .ros, .pmh)
+    checkFlags: (val) ->
+      if /\.(pt|cc|hpi|pmh|psh|meds|all|sh|fh|ros|jot)/i.test val
+        flag = val.match /\.(pt|cc|hpi|pmh|psh|meds|all|sh|fh|ros|jot)/i
+        @currentDestination = flag[1].toUpperCase()
+        @val = val.replace /\.(pt|cc|hpi|pmh|psh|meds|all|sh|fh|ros|jot)/i, ""
+        @input.val @val
+        @render()
+
+    # cycle ROS categories with < or >
+    cycleROS: () ->
+      #cycle ROS
+      c = if @currentROS > 0 then @currentROS else 1
+      if /</.test(@val) and c > 0 then c -= 1
+      if />/.test(@val) and c < 13 then c += 1
+      @currentROS = c
+      @val = @val.replace /(<|>)/i, ""
+      @showROS()
+      @input.val(@val)
+
+
+    #  handles marking symptoms on ROS
+    #  ROS navigation and highlighting
+    #  needs to be refactored further
+    markROS: () ->
+      # remove previous highlights
+      @$('.ros-state').removeClass('highlight-keycode')
+      @$('.ros-item').removeClass('last-ros')
+
+      if /\w/i.test(@val) and not /(\.|-)/.test(@val)
+
+          #highlight section on first letter
+          @$('.'+ @val.toUpperCase()).addClass('highlight-keycode')
+          if /\w\w/i.test(@val)
+
+            @val = @val.toUpperCase()
+            rosItem = @$('.' + @val)
+
+            # make sure ROS section is in view ( dont want to mark non visable sections ) #
+            if $('.' + @val).parent().parent().parent().is(':visible')
+              # toggles yes/no/unasked
+              if (rosItem.hasClass('ros-yes'))
+                rosItem.removeClass('ros-yes').filter('.ros-content').addClass('ros-no')
+              else if (rosItem.hasClass('ros-no'))
+                rosItem.removeClass('ros-no')
+              else 
+                rosItem.filter('.icon').addClass('ros-yes')
+
+
+              @currentROS = rosItem.parent().addClass('last-ros').parent().parent().index()
+
+            @input.val('')
+            @showROS()
+
+
+
+
+
+    # on keyup check input box for commands flags shortcuts
+    checkText: (e) ->
+      @val = @input.val()
+      @checkFlags(@val)
+
+      # ROS section controls
+      if @currentDestination is 'ROS'
+        # cycle ROS
+        @cycleROS()
+        @markROS()
+
+    # add jots to ros symptoms with a dash
+    # example if SA is keycode for headache
+    # "-sa 6 over the past week" would add a specific jot
+    # to the headache symptom of ROS
+    jotROS: (val) -> 
+      if /-(\w\w)\b/i.test(val) and @currentDestination is 'ROS'
+        match = val.match(/(\w\w)(.*)/i)
+        flag = match[1].toUpperCase()
+        extra = match[2]
+        symptom = @$('.ros-content.'+ flag).text()
+        section = @$('.ros-content.'+ flag).parent().parent().parent().find('h3').text()
+        content = '[' + section + '-' + symptom + ']' + ':'+ extra
+      content || val
+
+    # show active ROS sections (have too many sections to show all at once)
+    showROS: ->
+      sections = @$('.ros-container').children().hide()
+      start = if @currentROS > 0 then @currentROS else 1
+      sections[start-1..start+2].show().index()
+
+    # toggle details container below input for extras
+    toggleDetails: (current) ->
+      @$('.details').hide()
+      @$('.' + current + '-container').show()
+      @showROS()
 
 
   # Finally, we kick things off by creating the **App**.
-  window.App = new AppView()
+  root.App = new AppView()
+
 
 

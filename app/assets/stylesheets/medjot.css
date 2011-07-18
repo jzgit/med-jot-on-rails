@@ -49,7 +49,7 @@ html {
   margin: 0 auto;
 }
 
-#todoapp {
+#jotapp {
   float:left;
   width: 480px;
   margin: 20px;
@@ -60,7 +60,7 @@ html {
   -o-box-shadow: rgba(0, 0, 0, 0.2) 0 5px 6px 0;
   box-shadow: rgba(0, 0, 0, 0.2) 0 5px 6px 0;
 }
-  #todoapp h1, #history h1, .guider_content h1 {
+  #jotapp h1, #history h1, .guider_content h1 {
     text-align: center;
     font-size: 300%;
     font-family: museo-sans,sans-serif;
@@ -68,7 +68,7 @@ html {
     font-weight: 900;
     margin-bottom: 1em;
   }
-  #todoapp .title {
+  #jotapp .title {
     position: relative;
   }
   #help {
@@ -125,10 +125,10 @@ html {
 }
 
 
-#create-todo {
+#create-jot {
   position: relative;
 }
-  #create-todo input {
+  #create-jot input {
     width: 466px;
     font-size: 24px;
     font-family: inherit;
@@ -142,10 +142,10 @@ html {
     -o-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
     box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
   }
-    #create-todo input::-webkit-input-placeholder {
+    #create-jot input::-webkit-input-placeholder {
       font-style: italic;
     }
-  #create-todo span {
+  #create-jot span {
     position: absolute;
     z-index: 999;
     width: 170px;
@@ -270,7 +270,7 @@ html {
       -o-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
       box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
     }
-  .jot-list .todo-destroy {
+  .jot-list .jot-destroy {
     position: absolute;
     right: 0px;
     top: 10px;
@@ -280,13 +280,13 @@ html {
     height: 20px;
     background: url(/assets/destroy.png) no-repeat 0 0;
   }
-    .jot-list li:hover .todo-destroy {
+    .jot-list li:hover .jot-destroy {
       display: block;
     }
-    .jot-list .todo-destroy:hover {
+    .jot-list .jot-destroy:hover {
       background-position: 0 -20px;
     }
-    .todo-move {
+    .jot-move {
     padding: 8px 0px 0px 14px;
     float: right;
     margin: 0;
@@ -300,19 +300,19 @@ html {
     -moz-user-select:none;
     
    }
-    .jot-list li:hover .todo-move {
+    .jot-list li:hover .jot-move {
       display: inline;
     }
-    .jot-list .todo-move:hover {
+    .jot-list .jot-move:hover {
       color: #333333;
     }
 
-.auto-tag .todo-move {
+.auto-tag .jot-move {
   padding-left: 9px;
   display: block;
 }
 
-.auto-tag .todo-move.heading {
+.auto-tag .jot-move.heading {
   float: left;
   padding-left: 0px;
   cursor: default;

@@ -84,7 +84,7 @@
   height: 42px;
   position: absolute;
   display: none;
-  background-image: url('../guider_arrows.png');
+  background-image: url('/assets/guider_arrows.png');
   background-repeat: no-repeat;
   z-index: 100000006 !important;
 }
