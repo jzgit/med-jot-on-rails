@@ -60,6 +60,7 @@ jQuery ->
       $(".jot-list").filter('.'+location).append(view.render().el)
 
 
+
     # Add all items in the **Jots** collection at once.
     addAll: ->
       Jots.each @addOne
@@ -76,9 +77,12 @@ jQuery ->
       if e.keyCode is 13
         attrs = @newAttributes()
         # checks for ROS symptom flags before assigning content
-        attrs.content = @jotROS @input.val()
-        attrs.location = @currentDestination
+        [content, context] = @jotROS(@input.val())
 
+
+        attrs.content = content || @input.val()
+        attrs.location = @currentDestination
+        attrs.context = context || ''
         Jots.create attrs
         @input.val('')
 
@@ -144,7 +148,6 @@ jQuery ->
 
 
 
-
     # on keyup check input box for commands flags shortcuts
     checkText: (e) ->
       @val = @input.val()
@@ -162,13 +165,12 @@ jQuery ->
     # to the headache symptom of ROS
     jotROS: (val) -> 
       if /-(\w\w)\b/i.test(val) and @currentDestination is 'ROS'
-        match = val.match(/(\w\w)(.*)/i)
-        flag = match[1].toUpperCase()
-        extra = match[2]
+        [all, flag, content] = val.match(/(\w\w)(.*)/i)
+        flag = flag.toUpperCase()
         symptom = @$('.ros-content.'+ flag).text()
-        section = @$('.ros-content.'+ flag).parent().parent().parent().find('h3').text()
-        content = '[' + section + '-' + symptom + ']' + ':'+ extra
-      content || val
+        section = @$('.ros-content.'+ flag).closest('.ros-section').find('h3').text()
+        context = '[' + section + '-' + symptom + ']'
+      [content, context]
 
     # show active ROS sections (have too many sections to show all at once)
     showROS: ->
