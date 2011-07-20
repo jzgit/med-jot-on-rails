@@ -1,0 +1,325 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  cursor: default;
+}
+
+
+    /* inforamation architect's styles */
+address, blockquote, caption, cite, code, dl, 
+figcaption, h1, h2, h3, h4, h5, h6, label, legend,
+ol, p, pre, ul, table {
+
+    display:block;
+    font:normal normal 400 1em/1.5em Georgia,Serif;
+    list-style:none;
+    margin:0 0 1.5em;
+    text-rendering: optimizeLegibility;
+}
+
+/* scss variables and mixins */
+
+
+body {
+    background: #eeeeee;
+    color: #333333;
+  }
+
+#center-app {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+#jotapp {
+  float:left;
+  width: 480px;
+  margin: 20px;
+  background: white;
+  padding: 20px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 5px 6px 0;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 5px 6px 0;
+  -o-box-shadow: rgba(0, 0, 0, 0.2) 0 5px 6px 0;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 5px 6px 0;
+}
+  #jotapp h1, #history h1, .guider_content h1 {
+    text-align: center;
+    font-size: 300%;
+    font-family: museo-sans,sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    margin-bottom: 1em;
+  }
+  #jotapp .title {
+    position: relative;
+  }
+  #help {
+  font-size: 22px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-family: museo-sans, sans-serif;
+  font-weight: 700;
+  color: #cccccc;
+  cursor: pointer;
+  }
+  #help:hover {
+  color: #333333;
+  }
+
+#history {
+  float: left;
+  width: 480px;
+  margin: 20px;
+  background: white;
+  padding: 20px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 5px 6px 0;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 5px 6px 0;
+  -o-box-shadow: rgba(0, 0, 0, 0.2) 0 5px 6px 0;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 5px 6px 0;
+}
+
+/* IA section headers */
+.section-title h3 {
+  font-size: 125%;
+  line-height: 1.2em;
+  margin: 1.2em 0;
+  border-bottom: 1px solid #ccc;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+}
+
+/* section flags */
+.section-title h3 span {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #CCC;
+  float: right;
+  margin-right: 0px;
+  cursor: pointer;
+}
+
+
+#jots h3 {
+  display: block;
+  padding-top: 60px;
+}
+
+
+#create-jot {
+  position: relative;
+
+  input {
+    width: 466px;
+    font-size: 24px;
+    font-family: inherit;
+    line-height: 1.4em;
+    border: 0;
+    outline: none;
+    padding: 6px;
+    border: 1px solid #999999;
+    -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+    -o-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+  }
+  input::-webkit-input-placeholder {
+      font-style: italic;
+  }
+  span {
+    position: absolute;
+    z-index: 999;
+    width: 170px;
+    left: 50%;
+    margin-left: -85px;
+  }
+}
+
+
+
+.details {
+  clear: both;
+  display: none;
+  padding-top: 2px;
+
+}
+
+.ros-container {
+
+  .ros-section {
+    clear: both;
+    padding: 26px 0;
+
+    h3{
+      font-size: 110%;
+      color: #ccc;
+      margin-bottom: 6px;
+      border-bottom: 1px solid #ccc;
+      -webkit-user-select:none;
+      -moz-user-select:none;
+    }
+  }
+
+  .ros-item {
+    position: relative;
+    float: left;
+    margin-right: 20px;
+   }
+
+  .ros-state {
+    float: left;
+    position: relative;
+    padding-left: 8px; 
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: #CCC;
+  }
+
+  .ros-content {
+    float: left;
+    position: relative;
+  }
+  .icon {
+    padding: 5px 0 0 2px ;
+  }
+  .ros-no {
+    text-decoration: line-through;
+  }
+  .ros-yes {
+    background: url(/assets/59.png) no-repeat 0 0;
+    background-position: center;
+    width: 16px;
+    height: 11px;
+    padding: 5px 0 0 2px ;
+    position: block;
+  }
+  .last-ros {
+    background-color: #FFFF9E;
+  }
+}
+
+
+.jot-list {
+  margin-top: 10px;
+}
+  .jot-list li {
+    display: block;
+    position: relative;
+  }
+  .jot-list li:hover {
+    padding: 0px 20px 11px 0px;
+  }
+    .jot-list li:after {
+      content: "\0020";
+      display: block;
+      height: 0;
+      clear: both;
+      overflow: hidden;
+      visibility: hidden;
+    }
+    .jot-list li.editing {
+      padding: 0;
+      border-bottom: 0;
+    }
+  .jot-list .editing .display,
+  .jot-list .edit {
+    display: none;
+  }
+    .jot-list .editing .edit {
+      display: block;
+    }
+    .jot-list .editing input {
+      width: 444px;
+      font-size: 24px;
+      font-family: inherit;
+      margin: 0;
+      line-height: 1.6em;
+      border: 0;
+      outline: none;
+      padding: 10px 7px 0px 27px;
+      border: 1px solid #999999;
+      -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+      -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+      -o-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+      box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+    }
+  .jot-list .jot-destroy {
+    position: absolute;
+    right: 0px;
+    top: 10px;
+    display: none;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    background: url(/assets/destroy.png) no-repeat 0 0;
+  }
+    .jot-list li:hover .jot-destroy {
+      display: block;
+    }
+    .jot-list .jot-destroy:hover {
+      background-position: 0 -20px;
+    }
+    .jot-move {
+    padding: 8px 0px 0px 14px;
+    float: right;
+    margin: 0;
+    display: none;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: #cccccc;
+    cursor: pointer;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    
+   }
+    .jot-list li:hover .jot-move {
+      display: inline;
+    }
+    .jot-list .jot-move:hover {
+      color: #333333;
+    }
+
+.auto-tag .jot-move {
+  padding-left: 9px;
+  display: block;
+}
+
+.auto-tag .jot-move.heading {
+  float: left;
+  padding-left: 0px;
+  cursor: default;
+}
+.current-tag {
+  color: #333333;
+}
+
+.highlight-keycode {
+  color: #333333;
+}
+
+
+
+#current-desintation div {
+  display: block;
+  padding: 30px 30px 0 0;
+}
+
+

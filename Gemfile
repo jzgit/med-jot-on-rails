@@ -18,8 +18,6 @@ gem 'rails-backbone'
 gem "ejs", "~> 1.0.0"
 gem 'eco', '~> 1.0.0'
 
-gem 'jasminerice'
-gem 'haml'
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -29,8 +27,11 @@ gem 'haml'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-group :test do
+group :development, :test do
   # Pretty printed test output
+  gem 'awesome_print', :require => 'ap'
+  gem 'rspec-rails', '~> 2.0'
+  gem 'jasmine'
   gem 'turn', :require => false
 end
 

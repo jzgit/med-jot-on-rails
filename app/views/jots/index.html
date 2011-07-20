@@ -1,60 +1,56 @@
+<div id="center-app"> 
+  <!-- Jot App Interface --> 
+  <div id="jotapp"> 
 
+    <div class="title"> 
+      <h1>Med Jot</h1> 
+      <span id="help"><b>?</b></span> 
+    </div> 
 
- 
-    <div id="center-app"> 
-      <!-- Jot App Interface --> 
-      <div id="jotapp"> 
- 
-        <div class="title"> 
-          <h1>Med Jot</h1> 
-          <span id="help"><b>?</b></span> 
-        </div> 
- 
-        <div class="content"> 
- 
-          <div id="create-jot"> 
-            <input id="new-jot" placeholder="Jot whatever you like." type="text" /> 
-            <span class="ui-tooltip-top" style="display:none;">Press Enter to save this task</span> 
-          </div> 
-          <div id="current-destination"> 
-          </div> 
- 
-          <div class="details pt-container"></div> 
-          <div class="details cc-container"></div> 
-          <div class="details hpi-container"></div> 
-          <div class="details pmh-container"></div> 
-          <div class="details psh-container"></div> 
-          <div class="details meds-container"></div> 
-          <div class="details all-container"></div> 
-          <div class="details sh-container"></div> 
-          <div class="details fh-container"></div> 
- 
-          <div class="details ros-container"></div> 
-        </div> 
- 
-        <div id="jots"> 
-          <div id="jots" class="section-title"> 
-            <h3>Jots<span class="tag">JOT</span></h3> 
-          </div> 
-          <ul class="jot-list jot undefined"></ul> 
-        </div> 
- 
-        <div id="jot-stats"></div> 
- 
+    <div class="content"> 
+
+      <div id="create-jot"> 
+        <input id="new-jot" placeholder="Jot whatever you like." type="text" /> 
+        <span class="ui-tooltip-top" style="display:none;">Press Enter to save this task</span> 
       </div> 
- 
-    <div id="history"> 
-      <div class="history-content"></div> 
-    </div> 
+      <div id="current-destination"> 
+      </div> 
+
+      <div class="details pt-container"></div> 
+      <div class="details cc-container"></div> 
+      <div class="details hpi-container"></div> 
+      <div class="details pmh-container"></div> 
+      <div class="details psh-container"></div> 
+      <div class="details meds-container"></div> 
+      <div class="details all-container"></div> 
+      <div class="details sh-container"></div> 
+      <div class="details fh-container"></div> 
+
+      <div class="details ros-container"></div> 
     </div> 
 
-    <script type="text/javascript">
-      guider.createGuider({
-        buttons: [{name: "Close"}],
-        description: "Med Jot is an experimental interface for quickly recording medical information.  It allows documentation to follow the natural flow of conversation.<br /><br />A jot is a single chunk of information.  They are organized by categories, which mimic the normal sections of a medical history form.  The current category tag is applied when you enter your jot.  To change the tag, type \"<b>.</b>\" followed by the category abbreviation (even if you're in the middle of entering a jot).  The JOT category allows you to quickly collect lots of jots for later classification.<br /><br /><b>Example:</b><br />Mr Jones is a 68 yo man from Philadelphia  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[tag : JOT]<br />Presents with substernal chest pain <b>.hpi</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[tag : HPI]<br />The pain began while walking up stairs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[tag : HPI]<br />Lipitor 20mg and aspirin 81mg, daily <b>.meds</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;[tag : MEDS]<br />Hypertension, hyperlipidemia, and diabetes <b>.pmh</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[tag : PMH]<br /><br /><b>Review of Systems:</b> To mark a symptom positive, type the corresponding key code a single time.  Entering the key code twice marks it negative.  A third time resets resets the symptom. Use < and > to cycle through sections.<br /><br /><b>Categories:</b><br />PT (general patient information), CC (chief complaint), HPI (history of present illness), PMH (past medical history), PSH (past surgical history), MEDS (medications), ALL (allergies), SH (social history), FH (family history), ROS (review of systems), JOT (jot)",
-        id: "first",
-        overlay: true,
-        title: "Welcome to Med Jot"
-      });
-    </script>
+    <div id="jots"> 
+      <div id="jots" class="section-title"> 
+        <h3>Jots<span class="tag">JOT</span></h3> 
+      </div> 
+      <ul class="jot-list jot undefined"></ul> 
+    </div> 
+
+
+  </div> 
+
+<div id="history"> 
+  <div class="history-content"></div> 
+</div> 
+</div> 
+
+<script type="text/javascript">
+  guider.createGuider({
+    buttons: [{name: "Close"}],
+    description: "Med Jot is an experimental interface for quickly recording medical information.  It allows documentation to follow the natural flow of conversation.<br /><br />A jot is a single chunk of information.  They are organized by categories, which mimic the normal sections of a medical history form.  The current category tag is applied when you enter your jot.  To change the tag, type \"<b>.</b>\" followed by the category abbreviation (even if you're in the middle of entering a jot).  The JOT category allows you to quickly collect lots of jots for later classification.<br /><br /><b>Example:</b><br />Mr Jones is a 68 yo man from Philadelphia  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[tag : JOT]<br />Presents with substernal chest pain <b>.hpi</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[tag : HPI]<br />The pain began while walking up stairs &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[tag : HPI]<br />Lipitor 20mg and aspirin 81mg, daily <b>.meds</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;[tag : MEDS]<br />Hypertension, hyperlipidemia, and diabetes <b>.pmh</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[tag : PMH]<br /><br /><b>Review of Systems:</b> To mark a symptom positive, type the corresponding key code a single time.  Entering the key code twice marks it negative.  A third time resets resets the symptom. Use < and > to cycle through sections.<br /><br /><b>Categories:</b><br />PT (general patient information), CC (chief complaint), HPI (history of present illness), PMH (past medical history), PSH (past surgical history), MEDS (medications), ALL (allergies), SH (social history), FH (family history), ROS (review of systems), JOT (jot)",
+    id: "first",
+    overlay: true,
+    title: "Welcome to Med Jot"
+  });
+</script>
 

@@ -2,6 +2,12 @@
 # Our basic **Jot** model has `content`, `order`, and `done` attributes.
 class Railsjot.Models.Jot extends Backbone.Model
 
+  EMPTY: "empty jot..."
+
+  initialize: ->
+    unless @get "content"
+      @set content: @EMPTY
+
   # Remove this Jot and delete its view.
   clear: -> 
     @destroy()
