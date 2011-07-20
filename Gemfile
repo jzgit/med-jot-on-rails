@@ -18,6 +18,9 @@ gem 'rails-backbone'
 gem "ejs", "~> 1.0.0"
 gem 'eco', '~> 1.0.0'
 
+gem 'mongoid', '~> 2.0'
+gem 'bson_ext', '~> 1.3'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
