@@ -1,0 +1,22 @@
+<div class="section-title">
+  <h3>Family History Details</h3>
+  <ul class='fh-list'>
+
+  <% _(fhistory).each( function(x) { %>
+    <li>
+      <div class="display">
+      <span class='fh-code'><%= x.code %></span>
+        <span class='fh-relationship'>[<%= x.relationship %>]</span>
+        <span class='fh-name'><%= x.name %></span>
+        <span class='fh-age'><% if (x.deceased) { %>died at <% } %>age <%= x.age %></span>
+        <div class="fh-content"><%= x.content %></div>
+        <span class="fh-destroy"></span>
+      </div>
+      <div class="edit">
+        <input class="fh-input" type="text" value="" />
+      </div>
+    </li>
+  <% }); %>
+
+  </ul>
+</div>

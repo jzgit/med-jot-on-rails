@@ -5,7 +5,7 @@ jQuery ->
 
     el:  ($ '.ros-container')
     tagName:  'div'
-    template: JST["backbone/templates/ros-section"]
+    template: JST["backbone/templates/ros_section"]
 
     initialize: ->
       _.bindAll(this, 'render')

@@ -1,4 +1,3 @@
-
 # Our basic **Jot** model has `content`, `order`, and `done` attributes.
 class Railsjot.Models.Jot extends Backbone.Model
 

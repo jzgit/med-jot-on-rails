@@ -1,4 +1,9 @@
 Railsjot::Application.routes.draw do
+
+  resources :fhistories do
+    resources :fmembers
+  end
+
   resources :jots
 
   root :to => 'jots#index'

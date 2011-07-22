@@ -322,11 +322,90 @@ body {
 
 }
 
-
-
 #current-desintation div {
   display: block;
   padding: 30px 30px 0 0;
 }
 
+.fh-list {
+  margin-top: 10px;
+}
+  .fh-list li {
+    display: block;
+    position: relative;
+    padding: 0px 20px 11px 0px;
+  }
+    .fh-list li:after {
+      content: "\0020";
+      display: block;
+      height: 0;
+      clear: both;
+      overflow: hidden;
+      visibility: hidden;
+    }
+    .fh-list li.editing {
+      padding: 0;
+      border-bottom: 0;
+    }
+  .fh-list .editing .display,
+  .fh-list .edit {
+    display: none;
+  }
+    .fh-list .editing .edit {
+      display: block;
+    }
+    .fh-list .editing input {
+      width: 444px;
+      font-size: 24px;
+      font-family: inherit;
+      margin: 0;
+      line-height: 1.6em;
+      border: 0;
+      outline: none;
+      padding: 10px 7px 0px 27px;
+      border: 1px solid #999999;
+      -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+      -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+      -o-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+      box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+    }
+  .fh-list .fh-destroy {
+    position: absolute;
+    right: 0px;
+    top: 10px;
+    display: none;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    background: url(/assets/destroy.png) no-repeat 0 0;
+  }
+    .fh-list li:hover .fh-destroy {
+      display: block;
+    }
+    .fh-list .fh-destroy:hover {
+      background-position: 0 -20px;
+    }
 
+.fh-code {
+  float: left;
+  position: relative;
+  padding-right: 4px; 
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #CCC;
+}
+.fh-age {
+  float: right;
+  padding-right: 8px;
+  color: #CCC;
+}
+.fh-name, .fh-relationship {
+  float:left;
+  padding-right: 8px;
+  color: #CCC;
+}
+.fh-content {
+  clear:both;
+  padding-left: 0px;
+}

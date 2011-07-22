@@ -1,0 +1,23 @@
+<% _(ros).each( function(s) { %>
+  <div  class="ros-section <%= s.key %>">
+    <h3><%= s.title %></h3>
+    <div class="ros-items">
+
+      <% var keyCodes = _.map(alphabet, function(l) { return s.key + l }); %>
+
+      <% var zipped = _.zip(keyCodes, s.content); %>
+      <% _.each(zipped , function(x) { 
+        var code = x[0].toString().split(''); %>
+
+
+        <% if (x[1]) %>
+        <div class="ros-item">
+          <div class="ros-state  <%= code[0]%> <%= x[0] %> "><%= x[0] %></div>
+          <div class="ros-state icon <%= x[0] %> "></div>
+          <div class="ros-content <%= x[0] %>"><%= x[1] %></div>
+        </div>
+
+        <% }); %>
+    </div>
+  </div>
+<% }); %>
