@@ -1,4 +1,7 @@
 Railsjot::Application.configure do
+  
+  envfilepath = '/home/dotcloud/environment.json'
+  ENV = JSON.parse(File.open(envfilepath).read())
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests

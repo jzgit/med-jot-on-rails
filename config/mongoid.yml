@@ -1,6 +1,4 @@
 
-<%= envfilepath = '/home/dotcloud/environment.json' %>
-<%= environment = JSON.parse(File.open(envfilepath).read()) %>
 
 
 
@@ -14,10 +12,10 @@ test:
 
 # set these environment variables on your prod server
 production:
-  host: <%= environment["DOTCLOUD_DB_MONGODB_HOST"] %>
-  port: <%= environment["DOTCLOUD_DB_MONGODB_PORT"] %>
+  host: <%= ENV["DOTCLOUD_DB_MONGODB_HOST"] %>
+  port: <%= ENV["DOTCLOUD_DB_MONGODB_PORT"] %>
   username: root
-  password: <%= environment["DOTCLOUD_DB_MONGODB_PASSWORD"] %>
+  password: <%= ENV["DOTCLOUD_DB_MONGODB_PASSWORD"] %>
   database: admin
   # slaves:
   #   - host: slave1.local
