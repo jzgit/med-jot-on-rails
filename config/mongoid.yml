@@ -15,7 +15,7 @@ test:
 # set these environment variables on your prod server
 production:
   host: <%= ENV['DOTCLOUD_DB_MONGODB_HOST'] %>
-  port: <%= ENV['DOTCLOUD_DB_MONGODB_PORT'] %>
+  port: 11878
   username: <%= ENV['DOTCLOUD_DB_MONGODB_USERNAME'] %>
   password: <%= ENV['DOTCLOUD_DB_MONGODB_PASSWORD'] %>
   database: db
