@@ -1,0 +1,5 @@
+myrubyservice:
+  type: ruby
+  config:
+    ruby-version: 1.9.2
+
