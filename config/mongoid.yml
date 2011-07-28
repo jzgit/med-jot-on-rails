@@ -1,3 +1,9 @@
+
+<%= envfilepath = '/home/dotcloud/environment.json' %>
+<%= ENV = JSON.parse(File.open(envfilepath).read()) %>
+
+
+
 development:
   host: localhost
   database: railsjot_development
@@ -8,13 +14,16 @@ test:
 
 # set these environment variables on your prod server
 production:
-  host: <%= ENV['MONGOID_HOST'] %>
-  port: <%= ENV['MONGOID_PORT'] %>
-  username: <%= ENV['MONGOID_USERNAME'] %>
-  password: <%= ENV['MONGOID_PASSWORD'] %>
-  database: <%= ENV['MONGOID_DATABASE'] %>
+  host: <%= ENV['DOTCLOUD_DB_MONGODB_HOST'] %>
+  port: <%= ENV['DOTCLOUD_DB_MONGODB_PORT'] %>
+  username: <%= ENV['DOTCLOUD_DB_MONGODB_USERNAME'] %>
+  password: <%= ENV['DOTCLOUD_DB_MONGODB_PASSWORD'] %>
+  database: 'db'
   # slaves:
   #   - host: slave1.local
   #     port: 27018
   #   - host: slave2.local
   #     port: 27019
+  #
+
+
