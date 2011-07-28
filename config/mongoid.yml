@@ -18,7 +18,7 @@ production:
   port: <%= ENV['DOTCLOUD_DB_MONGODB_PORT'] %>
   username: <%= ENV['DOTCLOUD_DB_MONGODB_USERNAME'] %>
   password: <%= ENV['DOTCLOUD_DB_MONGODB_PASSWORD'] %>
-  database: 'db'
+  database: db
   # slaves:
   #   - host: slave1.local
   #     port: 27018
