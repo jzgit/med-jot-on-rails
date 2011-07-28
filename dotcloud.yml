@@ -1,5 +1,7 @@
-myrubyservice:
+rails:
   type: ruby
   config:
     ruby-version: 1.9.2
 
+db:
+  type: mongodb
