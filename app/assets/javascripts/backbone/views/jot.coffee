@@ -37,9 +37,12 @@ jQuery ->
     # we use `jQuery.text` to set the contents of the jot item.
     setContent: -> 
       content = @model.get 'content'
-      context = @model.get 'context'
-      @$('.jot-content').text content
-      @$('.context').text context
+      contexts = @model.get 'context'
+      jot = @$('.jot-content').text content
+      emptyContext = @$('.context').remove()
+      for c in contexts.split('-')
+        emptyContext.clone().text(c).insertBefore(@$('.jot-content'))
+
       @input = @$('.jot-input')
       @input.bind('blur', @close)
       @input.val content

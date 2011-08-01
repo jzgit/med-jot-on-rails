@@ -1,7 +1,4 @@
 
-
-
-
 development:
   host: localhost
   database: railsjot_development

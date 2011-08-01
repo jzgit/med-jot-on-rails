@@ -143,8 +143,17 @@ jQuery ->
               @currentROS = rosItem.parent().addClass('last-ros').parent().parent().index()
 
             @input.val('')
+            @saveROS()
             @showROS()
 
+
+
+    saveROS: () ->
+      for section in $('.ros-section')
+        # name = section.('.ros-section > h3').text()
+        positives = $('.ros-yes').next().text()
+        negatives = $('.ros-no').next().text()
+        alert $(section).length
 
 
 
@@ -169,7 +178,7 @@ jQuery ->
         flag = flag.toUpperCase()
         symptom = @$('.ros-content.'+ flag).text()
         section = @$('.ros-content.'+ flag).closest('.ros-section').find('h3').text()
-        context = '[' + section + '-' + symptom + ']'
+        context = section + '-' + symptom
       [content, context]
 
     # show active ROS sections (have too many sections to show all at once)

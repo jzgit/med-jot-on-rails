@@ -226,9 +226,6 @@ body {
   .jot-list li:hover {
     padding: 0px 20px 11px 0px;
   }
-  .jot-list li:hover {
-    padding: 0px  0px;
-  }
     .jot-list li:after {
       content: "\0020";
       display: block;
@@ -295,9 +292,6 @@ body {
    }
     .jot-list li:hover .jot-move {
       display: inline;
-    }
-    .jot-list.ros li:hover .jot-move {
-      display: none;
     }
     .jot-list .jot-move:hover {
       color: #333333;
@@ -417,14 +411,15 @@ body {
   // font-family: atrament-web;
   // font-weight: 700;
 
-  font-family: 'proxima-nova',  'Helvetica Neue' ,sans-serif;
+  font-family: 'league-gothic',  'Helvetica Neue' ,sans-serif;
   font-style: normal;
-  font-weight: 300;
+  font-weight: 400;
   
-  font-size: 14px;
+  font-size: 18px;
   padding: 0px 6px;
   margin: 0 5px 5px 0;
   -moz-border-radius:5px;
   -webkit-border-radius: 5px;
 
 }
+
